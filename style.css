@@ -1,13 +1,22 @@
 .info {
     width: 650px;
     border-radius: 30px;
-    border: 10px solid seagreen;
-    background-color: saddlebrown;
+    border: 10px solid rgb(48, 144, 144);
+    background-color: rgb(19, 31, 139);
     padding: 5px;
     font-weight: bolder;
-    color: whitesmoke
+    color: rgb(245, 245, 245)
 }
 
 strong {
     color: palegreen;
+}
+
+h1{
+    text-align: center;
+    color: aqua;
+}
+h2{
+    text-align: center;
+    color: blue;
 }

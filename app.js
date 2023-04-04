@@ -22,28 +22,47 @@ function randomInt(n) {
     return number;
   }
   
-  function play() {
+  let players = {};
+
+  function play(){
     const secretNumber = randomInt(10);
-    let guess = promptInt("Guess a number.");
+    let name = prompt("Enter your name?");
+    let guess = promptInt("Pick a number.");
     let guesses = [guess];
   
     while (guess !== secretNumber) {
       if (guess === null) {
-        alert("Goodbye!");
-        return;
+        alert("Quitter!");
+        break;
       }
   
       if (guess < secretNumber) {
-        guess = promptInt("Guess higher!");
+        guess = promptInt("Try higher!");
       } else {
-        guess = promptInt("Guess lower!");
+        guess = promptInt("Try lower!");
       }
   
       guesses.push(guess);
     }
-  
-    alert(`Correct! Your previous attempts were: ${guesses}.`);
-  }
-  
+
+    if(players[name]!== undefined){
+      const numGuesses = guesses.length;
+      const prevGuesses = players[name].length;
+      if(numGuesses > prevGuesses){
+        alert (`That’s Correct ${name}! You did better in your last game by ${numGuesses - prevGuesses} fewer guesses.`);
+      }else if(prevGuesses > numGuesses){
+        alert (`That’s Correct ${name}! And you beat your previous attempt by ${prevGuesses-numGuesses} fewer guesses!`);
+      }else{
+        alert(`Correct! Your previous attempts were the same: ${guesses}.`);
+      }
+    }
+      players[name] = guesses;
+
+const shouldPlayAgain = prompt ('Would you like to play again?');
+if(shouldPlayAgain.toLowerCase() === "y"){
   play();
-  
+}else{
+  alert(`Thanks for playing, ${name}!`);
+  }
+}
+  play();
